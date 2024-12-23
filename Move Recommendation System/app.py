@@ -2,6 +2,7 @@ import pickle
 import streamlit as st
 import requests
 import random
+import gzip
 
 
 st.set_page_config(
@@ -35,8 +36,10 @@ set_background_image()
 
 # Movie Recommendation System Header
 st.header("Movies Recommendation System")
-movies = pickle.load(open('movie_list.pkl','rb'))
-similarity = pickle.load(open('similarity.pkl','rb'))
+movies = pickle.load(open('/Users/rishabhupadhyay/Downloads/PROJECTS/Move Recommendation System/movie_list.pkl','rb'))
+with gzip.open('similarity.pkl.gz', 'rb') as f:
+    similarity = pickle.load(f)
+# similarity = pickle.load(open('/Users/rishabhupadhyay/Downloads/PROJECTS/Move Recommendation System/similarity.pkl.gz','rb'))
 
 movie_list = movies['title'].values
 selected_movie = st.selectbox(
